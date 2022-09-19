@@ -102,6 +102,8 @@ productSchema.methods.logger = function () {
 
 // Schema => Model => query
 
-const Product = mongoose.model("Product", productSchema);
+const collectionName = "products";
+
+const Product = mongoose.model("Product", productSchema, collectionName);
 
 module.exports = Product;

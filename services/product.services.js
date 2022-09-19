@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const mockData = require("../data/mock_data.json");
 
 exports.getProductsServices = async () => {
   const products = await Product.find({});
@@ -41,6 +42,6 @@ exports.deleteProductByIdService = async (data) => {
 };
 
 exports.bulkDeleteProductsService = async (data) => {
-  const result = Product.deleteMany({ _id: data.ids });
+  const result = Product.deleteMany({});
   return result;
 };

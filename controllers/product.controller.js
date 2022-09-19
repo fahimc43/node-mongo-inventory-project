@@ -6,6 +6,8 @@ const {
   deleteProductByIdService,
   bulkDeleteProductsService,
 } = require("../services/product.services");
+const Product = require("../models/Product");
+const mockData = require("../data/mock_data.json");
 
 exports.getProducts = async (req, res, next) => {
   try {
@@ -127,4 +129,21 @@ exports.bulkDeleteProducts = async (req, res, next) => {
       error: error.message,
     });
   }
+};
+
+exports.mockDataInsert = (req, res, next) => {
+  Product.insertMany(mockData, (error, docs) => {
+    if (error) {
+      res.status(400).json({
+        status: "fail",
+        message: "Can't mock-data insert",
+        error: error.message,
+      });
+    }
+    res.status(200).json({
+      status: "Success",
+      message: "Mock data update successfully",
+      data: docs,
+    });
+  });
 };
